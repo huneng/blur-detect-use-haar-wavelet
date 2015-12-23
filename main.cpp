@@ -105,12 +105,15 @@ void haar_wavelet_transform(HuMat &img, HuMat &res)
     ptrSrc = centerMat.data;
     ptrRes = res.data;
 
+    stride1 = centerMat.stride;
+    stride2 = res.stride;
+
     for(int y = 0; y < height; y += 2)
     {
         for(int x = 0; x < width; x++)
         {
             int a = ptrSrc[x];
-            int b = ptrSrc[stride1 +x];
+            int b = ptrSrc[stride1 + x];
 
             ptrRes[x] = (a+b)/2;
             ptrRes[len * stride2 + x] = (a-b)/2;
@@ -226,8 +229,6 @@ int blur_detect(HuMat &img, float *conf)
         src.height = haarRes[i].height >> 1;
         src.stride = haarRes[i].stride;
         src.data = haarRes[i].data;
-
-
     }
 
     for(int i = 0; i < 3; i++)
