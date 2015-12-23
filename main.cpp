@@ -81,6 +81,8 @@ void haar_wavelet_transform(HuMat &img, HuMat &res)
 
     int len = width/2;
 
+    assert(height % 2 == 0 && width % 2 == 0);
+
     for(int y = 0; y < height; y++)
     {
         for(int x = 0; x < width; x += 2)
@@ -212,6 +214,8 @@ int blur_detect(HuMat &img, float *conf)
     HuMat src = img;
 
     printf("BEGIN ...\n");
+
+    assert(width % 8 == 0 && height % 8 == 0);
 
     for(int i = 0; i < 3; i++)
     {
